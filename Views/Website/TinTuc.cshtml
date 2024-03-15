@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Website.Models.SUKIEN>
+@{
+    ViewBag.Title = "TinTuc";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+@helper Truncate(string s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length)<text>...</text>
+    }
+}
+<style type="text/css">
+    .imgsachbannhieu {
+        transition: all ease 0.5s;
+        width: 100px;
+    }
+
+        .imgsachbannhieu:hover {
+            transform: scale(1.2);
+        }
+
+    .media-left {
+        overflow: hidden;
+    }
+
+    .mota {
+        line-height: 24px;
+        height: 72px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .linkhover {
+        color: red;
+        text-decoration: none;
+        text-align: justify;
+        font-weight:bold;
+    }
+    p {
+        font-size: 15px;
+        font-weight: normal;
+        text-align: justify;
+    }
+</style>
+<br />
+<br />
+<div class="container">
+    <h2 class="text-center">CÁC TIN TỨC</h2>
+    <hr />
+    <div class="row">
+        @foreach (var tt in Model)
+        {
+            <div class="col-lg-12 col-md-12">
+                <div class="media-object-default">
+                    <div class="media">
+                        <div class="media-left">
+                            <a href="@Url.Action("ChiTietTinTuc", "Website", new { id=tt.Id_SuKien })">
+                                <img class="media-object imgsachbannhieu" src="~/Images/@tt.Anh" alt="placeholder image" style="width:150px;">
+                            </a>
+                            <br />
+                        </div>
+                        <div class="media-body">
+                            <h4 style="min-height:70px;">
+                                <a href="@Url.Action("ChiTietTinTuc", "Website", new { id=tt.Id_SuKien })" class="linkhover">@tt.TieuDe</a>
+                                <p class="mota"> @Truncate(tt.ChiTiet, 500)</p>
+                            </h4>
+                        </div>
+                    </div>
+                </div><hr />
+            </div>
+            
+        }
+    </div>
+
+</div>
+<br />
+<br />

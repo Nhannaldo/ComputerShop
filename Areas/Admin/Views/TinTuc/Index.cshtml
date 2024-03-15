@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "TinTuc";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@helper Truncate(string s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length)<text>...</text>
+    }
+}
+@model IEnumerable<Website.Models.SUKIEN>
+<h2>Danh mục Tin tức</h2>
+<div class="text-warning">
+    @ViewBag.Error
+</div>
+<hr />
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="btn btn-primary btn-default" href="@Url.Action("Create", "TinTuc")" role="button">Tạo tin tức mới</a>
+        </div>
+        <!-- /.panel-heading -->
+        <div class="panel-body">
+            <div class="table-responsive table-bordered">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Mã tin tức</th>
+                            <th>Tiêu đề</th>
+                            <th>Ảnh</th>
+                            <th>Nội dung</th>
+                            <th>Ngày đăng</th>
+                            <th>Hiển thị</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Id_SuKien)</td>
+                                <td>@Truncate(item.TieuDe,20)</td>
+                                <td><img src="~/Images/@item.Anh" style="width:50px;" /></td>
+                                <td>@Truncate(item.ChiTiet,25)</td>
+                                <td>@Html.FormatValue(@item.NgayDang, "{0:dd/MM/yyyy}")</td>
+                                <td><input type="checkbox" value="@item.HienThi" checked /></td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "TinTuc",new { id=item.Id_SuKien})"><i class="fa fa-pencil fa-fw"></i></a>|
+                                    <a href="@Url.Action("Details", "TinTuc",new { id=item.Id_SuKien})"><i class="fa fa-list-alt fa-fw"></i></a>|
+                                    <a onclick="return confirm('Bạn có chắc chắn muốn xoá danh mục này?')" href="@Url.Action("Delete", "TinTuc",new { id=item.Id_SuKien})"><i class="fa fa-times fa-fw"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+

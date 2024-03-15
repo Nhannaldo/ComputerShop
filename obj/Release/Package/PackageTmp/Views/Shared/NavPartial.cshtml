@@ -1,0 +1,35 @@
+﻿<!-- NAVIGATION -->
+<style>
+    .main-nav > li > a:after {
+        content: "";
+        display: block;
+        width: 0%;
+        height: 2px;
+        background-color: #D10024;
+        -webkit-transition: 0.2s all;
+        transition: 0.2s all;
+    }
+</style>
+<nav id="navigation">
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+            <!-- NAV -->
+            <ul class="main-nav nav navbar-nav">
+                <li><a href="@Url.Action("Index","Website")">TRANG CHỦ</a></li>
+                <li><a href="@Url.Action("GioiThieu","Website")">GIỚI THIỆU</a></li>
+                <li><a href="@Url.Action("LapTop","Website")">LAPTOP</a></li>
+                <li><a href="@Url.Action("LinhKien","Website")">LINH KIỆN PC</a></li>
+                <li><a href="@Url.Action("PhuKien","Website")">PHỤ KIỆN</a></li>
+                <li><a href="@Url.Action("TinTuc","Website")">TIN TỨC</a></li>
+                <li><a href="@Url.Action("LienHe","Website")">LIÊN HỆ</a></li>
+
+            </ul>
+            <!-- /NAV -->
+        </div>
+        <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->

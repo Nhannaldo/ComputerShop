@@ -1,0 +1,67 @@
+﻿@model Website.Models.SUKIEN
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="~/ckeditor/ckeditor.js"></script>
+<h2>THÊM MỚI</h2>
+
+@using (Html.BeginForm("Create", "TinTuc", FormMethod.Post, new { @enctype = "multipart/form-data" })) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Sự kiện</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label class="control-label col-md-2">Tiêu đề</label>
+        <div class="col-md-10">
+            <input type="text" size="70" name="TieuDe"
+                   required class="form-control" value="@ViewBag.TieuDe" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Ảnh</label>
+        <div class="col-md-10">
+            <input type="file" name="file"class="form-control" />
+            <font color="red">@ViewBag.ThongBao</font>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Chi tiết</label>
+        <div class="col-md-10">
+            <textarea name="ChiTiet" id="chitiet">@ViewBag.ChiTiet</textarea>
+            <script>CKEDITOR.replace('chitiet');</script>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2">Ngày đăng</label>
+        <div class="col-md-10">
+            <input type="date" name="NgayDang" required
+                   class="form-control" />
+        </div>
+    </div>
+    @*
+        <div class="form-group">
+            <label class="control-label col-md-2">Hiển thị</label>
+            <div class="col-md-10">
+                <input type="checkbox" size="70" name="HienThi" checked
+                         required/>
+            </div>
+        </div>
+    *@
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Thêm mới" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

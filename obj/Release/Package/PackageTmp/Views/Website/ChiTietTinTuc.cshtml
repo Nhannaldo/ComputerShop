@@ -1,0 +1,28 @@
+﻿
+@helper Truncate(string s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "ChiTietTinTuc";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+<div class="container">
+    <br />
+    <br />
+    <h3 class="text-center">@Model.TieuDe</h3>
+    <div class="center" style="text-align:center">
+        <img src="~/Images/@Model.Anh" width="500px" />
+    </div>
+    <br />
+   
+    <p>@Model.ChiTiet</p>
+    <p class="text-right" style="color:red;">Đăng ngày: @Html.FormatValue(Model.NgayDang, "{0:dd/MM/yyyy}")</p>
+</div>

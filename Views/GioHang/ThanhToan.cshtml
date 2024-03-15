@@ -1,0 +1,149 @@
+﻿@using Website.Models
+@{
+    ViewBag.Title = "ThanhToan";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+@{
+    KHACHHANG kh = (KHACHHANG)Session["TaiKhoan"];
+}
+@using (Html.BeginForm("ThanhToan", "GioHang", FormMethod.Post))
+{
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+
+            <div class="row">
+
+                <div class="col-md-5">
+                    <!-- Billing Details -->
+                    <div class="billing-details">
+                        <div class="section-title">
+                            <h3 class="title">Thông tin khách hàng</h3>
+                        </div>
+                        <div class="form-group">
+                            <label>Tên khách hàng</label>
+                            <input class="input" type="text" name="first-name" placeholder="Họ tên" value="@kh.TenKH" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="input" type="email" name="email" placeholder="Email" required value="@kh.Email" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ</label>
+                            <input class="input" type="text" name="address" placeholder="Address" value="@kh.DiaChi" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label>Số điện thoại</label>
+                            <input class="input" type="tel" name="tel" placeholder="Số điện thoại" value="@kh.DienThoai" readonly>
+                        </div>
+
+                    </div>
+                    <!-- /Billing Details -->
+                    <!-- Shiping Details -->
+
+                    <div class="shiping-details">
+                        <div class="section-title">
+                            <h3 class="title">Thông tin địa chỉ</h3>
+                        </div>
+                        <div class="input-checkbox">
+                            <div class="form-group">
+
+                                <textarea class="input" placeholder="Địa chỉ nhận hàng" name="DiaChi"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label style="font-weight:bold;">Ngày đặt hàng</label>
+                                <input class="input" type="date" name="NgayDat">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Shiping Details -->
+                    <!-- Order notes -->
+                    <div class="order-notes">
+                        <textarea class="input" placeholder="Ghi chú đơn hàng"></textarea>
+                    </div>
+                    <!-- /Order notes -->
+                </div>
+
+                <!-- Order Details -->
+                <div class="col-md-7 order-details">
+                    <div class="section-title text-center">
+                        <h3 class="title">Đơn đặt hàng của bạn</h3>
+                    </div>
+                    <div class="order-summary">
+
+                        <div class="order-col">
+
+                            <div><strong>PRODUCT</strong></div>
+                            <div><strong>TOTAL</strong></div>
+                        </div>
+                        <div class="order-products">
+                            @{
+
+                                foreach (var i in Model)
+                                {
+
+                                    <div class="order-col">
+
+                                        <div style="font-weight:bold;color:red;">@i.TenSP</div>
+                                        <div style="color:blue; font-weight:bold">@Html.FormatValue(@i.TongTien, "{0:#,##0}")</div>
+                                    </div>
+                                }
+                            }
+
+                        </div>
+                        <div class="order-col">
+                            <div>Shiping</div>
+                            <div><strong>FREE</strong></div>
+                        </div>
+                        <div class="order-col">
+                            <div><strong>TOTAL</strong></div>
+                            <div><strong class="order-total">@Html.FormatValue(@ViewBag.Tong, "{0:#,##0}")</strong></div>
+                        </div>
+                    </div>
+                    <div class="payment-method">
+                        <div class="input-radio">
+                            <input type="radio" name="payment" id="payment-1" required>
+                            <label for="payment-1">
+                                <span></span>
+                                Thanh toán khi nhận hàng
+                            </label>
+
+                        </div>
+                        <div class="input-radio">
+                            <input type="radio" name="payment" id="payment-2" required>
+                            <label for="payment-2">
+                                <span></span>
+                                Chuyển khoản
+                            </label>
+                            <br />
+                            <div class="caption">
+                                <p>Tên tài khoản: Nguyễn Hữu Nhân</p>
+                                <p>Số tài khoản:0972392342</p>
+                                <p>Ngân hàng: BIDV</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="input-checkbox">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms">
+                            <span></span>
+                            Tôi đã đọc và chấp nhận các điều khoản và điều kiện !
+                        </label>
+                    </div>
+                    @*<a href="#" class="primary-btn order-submit">Hoàn tất</a>*@
+                    <input type="submit" class="primary-btn order-submit" value="Hoàn tất" />
+                </div>
+
+
+            </div>
+            
+            <!-- /Order Details -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+ 
+                                }

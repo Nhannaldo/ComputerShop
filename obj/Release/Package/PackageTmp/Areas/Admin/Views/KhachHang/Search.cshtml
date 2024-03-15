@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@model IEnumerable<Website.Models.KHACHHANG>
+<h2>Danh mục Khách hàng</h2>
+<div class="text-warning">
+    @ViewBag.CusError
+</div>
+<hr />
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a class="btn btn-primary btn-default" href="@Url.Action("Index", "KhachHang")" role="button">Làm mới</a>
+            <div class="form-group input-group navbar-right">
+                @using (Html.BeginForm("Search", "KhachHang", FormMethod.Get))
+                {
+                    <input type="search" name="name" class="form-control" value="@ViewBag.Search" style="width:300px" placeholder="Nhập số điện thoại hoặc mã khách hàng..." />
+                    <button class="btn btn-success" type="submit">
+                        <i class="fa fa-search"></i>
+                    </button>
+                }
+                </div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive table-bordered">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Mã khách hàng</th>
+                            <th>Tên khách hàng</th>
+                            <th>Địa chỉ</th>
+                            <th>Số điện thoại</th>
+                            <th>Ngày sinh</th>
+                            <th>Email</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var item in Model)
+                        {
+
+                            <tr>
+                                <td>@item.MaKH</td>
+                                <td>@Html.DisplayFor(modelItem => item.TenKH)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DiaChi)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DienThoai)</td>
+                                <td>@Html.FormatValue(@item.NgaySinh, "{0:dd/MM/yyyy}")</td>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>
+                                    <a href="@Url.Action("Edit", "KhachHang",new { id= item.MaKH})"><i class="fa fa-pencil fa-fw"></i></a>|
+                                    <a href="@Url.Action("Details", "KhachHang",new { id= item.MaKH})"><i class="fa fa-list-alt fa-fw"></i></a>|
+                                    <a onclick="return confirm('Bạn có chắc chắn muốn xoá sản phẩm này?')" href="@Url.Action("Delete", "KhachHang",new { id= item.MaKH})"><i class="fa fa-times fa-fw"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+

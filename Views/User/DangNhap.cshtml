@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = null;
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="~/Content/css/user.css" rel="stylesheet" />
+<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+
+<h2>Đăng nhập/Đăng ký</h2>
+<br />
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        @using (Html.BeginForm("DangKy", "User"))
+        {
+            @Html.ValidationSummary(true)
+            <h2>Tạo tài khoản mới</h2>
+            <input type="text" placeholder="Họ tên" name="HoTen"/>
+            <input type="text" placeholder="Tên đăng nhập" name="TaiKhoan"/>
+            <input type="password" placeholder="Mật khẩu" name="MatKhau"/>
+            <input type="password" placeholder="Nhập lại mật khẩu" name="MatKhauNL"/>
+            <input type="email" placeholder="Email" name="Email"/>
+            <input type="text" placeholder="Điện thoại"name="DienThoai" />
+            <input type="date" placeholder="Ngày sinh" name="NgaySinh"/>
+            <input type="text" placeholder="Địa chỉ" name="DiaChi"/>
+            <button type="submit">Đăng ký</button>
+        }
+        </div>
+    <div class="form-container sign-in-container">
+        @using (Html.BeginForm("DangNhap", "User"))
+        {
+            @Html.ValidationSummary(true)
+
+            <h1>Đăng nhập</h1>
+            @*
+            <div class="social-container">
+                <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>hoặc đăng nhập với</span>
+                *@
+            <input type="text" placeholder="Tên đăng nhập" name="TenDN" />@ViewData["Err1"]
+            <input type="password" placeholder="Password" name="MatKhau" />@ViewData["Err2"]
+            
+            <button type="submit">Đăng nhập</button>
+        }
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Chào mừng trở lại!</h1>
+                <p>Để giữ kết nối với chúng tôi, vui lòng đăng nhập bằng thông tin cá nhân của bạn</p>
+                <button class="ghost" id="signIn">Đăng nhập</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Chào bạn!</h1>
+                <p>Nhập thông tin cá nhân của bạn và bắt đầu hành trình với chúng tôi</p>
+                <button class="ghost" id="signUp">Đăng ký</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add('right-panel-active');
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove('right-panel-active');
+    });
+</script>

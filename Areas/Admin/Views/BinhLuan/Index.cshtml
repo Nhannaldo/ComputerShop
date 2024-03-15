@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Website.Models.BINHLUAN>
+@{
+    ViewBag.Title = "BinhLuan";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@helper Truncate(string s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length)<text>...</text>
+    }
+}
+<h2>Danh mục Bình luận Đánh giá</h2>
+<div class="text-warning">
+    @ViewBag.Error
+</div>
+<hr />
+<div>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            
+        </div>
+        <div class="panel-body" style="width:100%;height:500px;overflow:auto;">
+            <div class="table-responsive table-bordered">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            
+                            <th>Tên</th>
+                            <th>Email</th>
+                            <th>Nội dung</th>
+                            <th>Đánh giá</th>
+                            <th>Ngày bình luận</th>
+                            <th>Mã sản phẩm</th>
+                            <th>Chức năng</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                
+                                <td>@Html.DisplayFor(modelItem => item.HoTen)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Truncate(item.NoiDung,20)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DanhGia) sao</td>
+                                <td>@Html.FormatValue(@item.NgayBinhLuan, "{0:dd/MM/yyyy}")</td>
+                                <td>@Html.DisplayFor(modelItem => item.MaSP)</td>
+                                <td>
+                                    <a href="@Url.Action("Details", "BinhLuan",new { id= item.MaBL})"><i class="fa fa-list-alt fa-fw"></i></a>|
+                                    <a onclick="return confirm('Bạn có chắc chắn muốn xoá sản phẩm này?')" href="@Url.Action("Delete", "BinhLuan",new {id= item.MaBL })"><i class="fa fa-times fa-fw"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.table-responsive -->
+        </div>
+        <!-- /.panel-body -->
+    </div>
+    <!-- /.panel -->
+</div>
+

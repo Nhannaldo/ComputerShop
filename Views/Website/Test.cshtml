@@ -1,0 +1,403 @@
+﻿@using Website.Models
+@model IEnumerable<Website.Models.SANPHAM>
+@helper Truncate(string s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "LapTop";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+@*
+        <div id="breadcrumb" class="section">
+            <!-- container -->
+
+                <div class="container">
+                    <!-- row -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="breadcrumb-tree">
+                                <li><a href="#">Trang chủ</a></li>
+                                <li><a href="#">LapTop</a></li>
+
+                                        <li><a href="#">Accessories</a></li>
+                                        <li class="active">Headphones (227,490 Results)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /row -->
+                    </div>
+
+    <!-- /container -->
+    </div>*@
+<!-- /BREADCRUMB -->
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- ASIDE -->
+            <div id="aside" class="col-md-3">
+                <!-- aside Widget -->
+                <div class="aside">
+                    <h3 class="aside-title">Hãng sản xuất</h3>
+                    <div class="checkbox-filter">
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="category-1">
+                            <label for="category-1">
+                                <span></span>
+                                Apple(MacBook)
+                            </label>
+                            <div class="caption">
+                                <div class="form-group">
+                                    <input class="input" type="text" name="first-name" placeholder="First Name">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="text" name="last-name" placeholder="Last Name">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="email" name="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="text" name="address" placeholder="Địa chỉ nhận hàng">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="text" name="city" placeholder="Thành Phố">
+                                </div>
+                                <div class="form-group">
+                                    <input class="input" type="tel" name="tel" placeholder="Telephone">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="category-2">
+                            <label for="category-2">
+                                <span></span>
+                                Acer
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="category-3">
+                            <label for="category-3">
+                                <span></span>
+                                Dell
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="category-4">
+                            <label for="category-4">
+                                <span></span>
+                                Asus
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="category-5">
+                            <label for="category-5">
+                                <span></span>
+                                Lenovo
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="category-6">
+                            <label for="category-6">
+                                <span></span>
+                                MSI
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="aside">
+                    <h3 class="aside-title">Giá</h3>
+                    <div class="checkbox-filter">
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="gia-1">
+                            <label for="gia-1">
+                                <span></span>
+                                Dưới 10 triệu
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="gia-2">
+                            <label for="gia-2">
+                                <span></span>
+                                Từ 10- 15 triệu
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="gia-3">
+                            <label for="gia-3">
+                                <span></span>
+                                Từ 15- 20 triệu
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="gia-4">
+                            <label for="gia-4">
+                                <span></span>
+                                Từ 20- 25 triệu
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="gia-5">
+                            <label for="gia-5">
+                                <span></span>
+                                Trên 25 triệu
+                            </label>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="aside">
+                    <h3 class="aside-title">CPU</h3>
+                    <div class="checkbox-filter">
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="cpu-1">
+                            <label for="cpu-1">
+                                <span></span>
+                                Intel core i3
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="cpu-2">
+                            <label for="cpu-2">
+                                <span></span>
+                                Intel core i5
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="cpu-3">
+                            <label for="cpu-3">
+                                <span></span>
+                                Intel core i7
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="cpu-4">
+                            <label for="cpu-4">
+                                <span></span>
+                                Adm Ryzen 3
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+
+                            <input type="checkbox" id="cpu-5">
+                            <label for="cpu-5">
+                                <span></span>
+                                Adm Ryzen 5
+                            </label>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="aside">
+                    <h3 class="aside-title">RAM</h3>
+                    <div class="checkbox-filter">
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="ram-1">
+                            <label for="ram-1">
+                                <span></span>
+                                4gb
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="ram-2">
+                            <label for="ram-2">
+                                <span></span>
+                                8gb
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="ram-3">
+                            <label for="ram-3">
+                                <span></span>
+                                16gb
+                            </label>
+                        </div>
+
+                        <div class="input-checkbox">
+                            <input type="checkbox" id="ram-4">
+                            <label for="ram-4">
+                                <span></span>
+                                32gb
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- /aside Widget -->
+                <!-- aside Widget -->
+                @*
+                    <div class="aside">
+                        <h3 class="aside-title">Giá</h3>
+                        <div class="price-filter">
+                            <div id="price-slider"></div>
+                            <div class="input-number price-min">
+                                <input id="price-min" type="number">
+                                <span class="qty-up">+</span>
+                                <span class="qty-down">-</span>
+                            </div>
+                            <span>-</span>
+                            <div class="input-number price-max">
+                                <input id="price-max" type="number">
+                                <span class="qty-up">+</span>
+                                <span class="qty-down">-</span>
+                            </div>
+                        </div>
+                    </div>
+                *@
+                <!-- /aside Widget -->
+                <!-- aside Widget -->
+                <!-- /aside Widget -->
+                <!-- aside Widget -->
+                <!-- /aside Widget -->
+            </div>
+            <!-- /ASIDE -->
+            <!-- STORE -->
+
+            <div id="store" class="col-md-9">
+                <!-- store top filter -->
+                <div class="store-filter clearfix">
+                    <div class="store-sort">
+                        <label>
+
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background:none;color:black">
+                                    Sắp xếp theo
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Sản phẩm nổi bật", "LapTop", new { sort = "spnoibat" })</li>
+                                    <li>@Html.ActionLink("Giá giảm dần", "LapTop", new { sort = "giam" })</li>
+                                    <li>@Html.ActionLink("Giá tăng dần", "LapTop", new { sort = "tang" })</li>
+                                </ul>
+                            </div>
+                        </label>
+
+
+                    </div>
+
+                </div>
+                <!-- /store top filter -->
+                <!-- store products -->
+                <div class="row">
+                    <!-- product -->
+                    @{
+                        foreach (var sp in Model)
+                        {
+                            <div class="col-md-4 col-xs-12">
+                                <div class="product">
+                                    <div class="product-img">
+                                        <img src="~/Images/@sp.Hinh" alt="" style="height:141.66px;">
+                                        @*
+                                            <div class="product-label">
+                                                <span class="sale">-30%</span>
+                                                <span class="new">NEW</span>
+                                            </div>*@
+                                    </div>
+                                    <div class="product-body" style="height:190.97px;">
+
+                                        <h3 class="product-name"><a href="@Url.Action("ChiTietSanPham", "Website", new { id = sp.MaSP })">@Truncate(sp.TenSP, 50)</a></h3>
+                                        <h4 class="product-price"><span>@Html.FormatValue(@sp.GiaBan, "{0:#,##0}") VNĐ</span> @*<del class="product-old-price">13.000.000 VNĐ</del>*@</h4>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product-btns">
+                                            <button class="add-to-wishlist"><a href="@Url.Action("ThemyeuThich","YeuThich", new { ms = sp.MaSP, url = Request.Url.ToString() })"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+                                            
+                                            <button class="quick-view"><a href="@Url.Action("ChiTietSanPham", "Website", new { id = sp.MaSP })"><i class="fa fa-eye"></i></a><span class="tooltipp">quick view</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-cart">
+                                        <button class="add-to-cart-btn"><i class=" glyphicon glyphicon-shopping-cart"></i> Add to cart</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix visible-sm visible-xs"></div>
+                        }
+
+                    }
+
+
+
+
+
+
+
+
+                    @*
+                        <div class="clearfix visible-lg visible-md"></div>
+
+
+
+                        <div class="clearfix visible-sm visible-xs"></div>
+
+
+
+
+
+                        <div class="clearfix visible-lg visible-md visible-sm visible-xs"></div>
+
+
+
+
+                        <div class="clearfix visible-sm visible-xs"></div>
+
+                    *@
+                </div>
+                <!-- /store products -->
+                <!-- store bottom filter -->
+                @*
+                    <div class="store-filter clearfix">
+                        <ul class="store-pagination">
+                            <li class="active">1</li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+                        </ul>
+                    </div>*@
+                @*Tạo liên kết các trang*@
+                
+                <!-- /store bottom filter -->
+            </div>
+            <!-- /STORE -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+

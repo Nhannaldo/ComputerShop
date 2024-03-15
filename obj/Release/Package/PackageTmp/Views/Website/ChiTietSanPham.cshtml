@@ -1,0 +1,561 @@
+﻿
+@helper Truncate(string s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "ChiTietSanPham";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+    <div class="section">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- Product main img -->
+                <div class="col-md-5 col-md-push-2">
+                    <div id="product-main-img">
+                        <div class="product-preview">
+                            <img src="~/Images/@Model.Hinh" alt="">
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /Product main img -->
+                <!-- Product thumb imgs -->
+                <div class="col-md-2 col-md-pull-5">
+                    <div id="product-imgs">
+                        <div class="product-preview">
+                            <img src="~/Images/@Model.Hinh" alt="">
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /Product thumb imgs -->
+                <!-- Product details -->
+                <div class="col-md-5">
+                    <div class="product-details">
+                        <h2 class="product-name">@Model.TenSP</h2>
+                        <div>
+                            <div class="product-rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </div>
+
+                        </div>
+                        <div>
+                            <h3 class="product-price">@Html.FormatValue(Model.GiaBan, "{0:#,##0}") VNĐ </h3>
+
+                        </div>
+
+                        @*
+                            <div class="product-options">
+                                <label>
+                                    Size
+                                    <select class="input-select">
+                                        <option value="0">X</option>
+                                        <option value="0">X</option>
+                                        <option value="0">X</option>
+                                    </select>
+                                </label>
+                                <label>
+                                    Color
+                                    <select class="input-select">
+                                        <option value="0">Red</option>
+                                    </select>
+                                </label>
+                            </div>
+                        *@
+                        <div class="add-to-cart">
+                            <div class="qty-label">
+                                Số lượng
+                                <div class="input-number">
+                                    <input type="number" value="1">
+                                    <span class="qty-up">+</span>
+                                    <span class="qty-down">-</span>
+                                </div>
+                            </div>
+                            <button class="add-to-cart-btn"><a href="@Url.Action("AddGioHang", "GioHang", new { id = Model.MaSP, url = Request.Url.ToString() })"><i class=" glyphicon glyphicon-shopping-cart"></i> Add to cart</a></button>
+                        </div>
+
+                        <ul class="product-btns">
+                            <li><a href="@Url.Action("AddYeuThich", "YeuThich", new { id = Model.MaSP, url = Request.Url.ToString() })"><i class="fa fa-heart-o"></i> add to wishlist</a></li>
+                        </ul>
+
+
+
+
+
+                    </div>
+                </div>
+                <!-- /Product details -->
+                <!-- Product tab -->
+                <div class="col-md-12">
+                    <div id="product-tab">
+                        <!-- product tab nav -->
+                        <ul class="tab-nav">
+                            <li class="active"><a data-toggle="tab" href="#tab1">Mô tả</a></li>
+                            <li><a data-toggle="tab" href="#tab2">Thông số</a></li>
+                            <li><a data-toggle="tab" href="#tab3">Bình luận</a></li>
+                        </ul>
+                        <!-- /product tab nav -->
+                        <!-- product tab content -->
+                        <div class="tab-content">
+                            <!-- tab1  -->
+                            <div id="tab1" class="tab-pane fade in active">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p style="text-align:justify">@Model.MoTa</p>
+                                        <img src="~/Images/@Model.Hinh" alt="">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /tab1  -->
+                            <!-- tab2  -->
+                            <div id="tab2" class="tab-pane fade in">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <table class=" table table-hover" style="border-collapse:collapse;border:1px solid;border-color: lightgray;">
+                                            <font size="4" style="font-weight:bold;">THÔNG SỐ KỸ THUẬT</font>
+                                            <hr />
+                                            <thead>
+                                                <tr>
+                                                    <th>
+                                                        #
+                                                    </th>
+                                                    <th>
+                                                        Thuộc tính
+                                                    </th>
+                                                    <th>
+                                                        Giá trị
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @if (Model.MaLoaiSP > 0 && Model.MaLoaiSP < 9)
+                                                {
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Màn hình</td>
+                                                        <td>@Model.ManHinh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Xuất xứ</td>
+                                                        <td>@Model.XuatXu</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Bảo hành</td>
+                                                        <td>@Model.BaoHanh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Kích thước</td>
+                                                        <td>@Model.KichThuoc</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>Trọng lượng</td>
+                                                        <td>@Model.TrongLuong</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>Chất liệu</td>
+                                                        <td>@Model.ChatLieu</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <td>Bộ xử lý</td>
+                                                        <td>@Model.BoXuLy</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8</td>
+                                                        <td>RAM</td>
+                                                        <td>@Model.RAM</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>9</td>
+                                                        <td>Hệ điều hành</td>
+                                                        <td>@Model.HeDieuHanh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10</td>
+                                                        <td>Đồ họa</td>
+                                                        <td>@Model.DoHoa</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>11</td>
+                                                        <td>Pin</td>
+                                                        <td>@Model.Pin</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>12</td>
+                                                        <td>Năm ra mắt</td>
+                                                        <td>@Model.NamRaMat</td>
+                                                    </tr>
+
+                                                }
+                                                @if (Model.MaLoaiSP > 15 && Model.MaLoaiSP < 24 && Model.MaLoaiSP != 17)
+                                                {
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Bảo hành</td>
+                                                        <td>@Model.BaoHanh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Chất liệu</td>
+                                                        <td>@Model.ChatLieu</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Màu sắc</td>
+                                                        <td>@Model.MauSac</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Kết nối</td>
+                                                        <td>@Model.KetNoi</td>
+                                                    </tr>
+                                                }
+                                                @if (Model.MaLoaiSP == 10)
+                                                {
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Bảo hành</td>
+                                                        <td>@Model.BaoHanh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Dòng CPU</td>
+                                                        <td>@Model.BoXuLy</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Đồ họa</td>
+                                                        <td>@Model.DoHoa</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Socket</td>
+                                                        <td>@Model.Socket</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>Tốc độ</td>
+                                                        <td>@Model.TocDo</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>Cache</td>
+                                                        <td>@Model.Cache</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <td>Nhân CPU</td>
+                                                        <td>@Model.NhanCPU</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8</td>
+                                                        <td>Luồng CPU</td>
+                                                        <td>@Model.LuongCPU</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>9</td>
+                                                        <td>Dây chuyền công nghệ</td>
+                                                        <td>@Model.DayChuyen</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10</td>
+                                                        <td>Điện áp tiêu thụ</td>
+                                                        <td>@Model.DienAp</td>
+                                                    </tr>
+                                                }
+                                                @if (Model.MaLoaiSP == 11)
+                                                {
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Bảo hành</td>
+                                                        <td>@Model.BaoHanh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Kích thước</td>
+                                                        <td>@Model.KichThuoc</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>CPU hỗ trợ</td>
+                                                        <td>@Model.BoXuLy</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>RAM hỗ trợ</td>
+                                                        <td>@Model.RAM</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>Ổ cứng hỗ trợ</td>
+                                                        <td>@Model.HeDieuHanh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>Đồ họa</td>
+                                                        <td>@Model.DoHoa</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <td>Cổng kết nối</td>
+                                                        <td>@Model.KetNoi</td>
+
+                                                    </tr>
+
+                                                }
+                                                @if (Model.MaLoaiSP == 12)
+                                                {
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Bảo hành</td>
+                                                        <td>@Model.BaoHanh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Kích thước</td>
+                                                        <td>@Model.KichThuoc</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Tốc độ quay</td>
+                                                        <td>@Model.TocDo</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Bộ nhớ Cache</td>
+                                                        <td>@Model.Cache</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>Dung lượng</td>
+                                                        <td>@Model.DungLuong</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>Loại ổ</td>
+                                                        <td>@Model.LoaiO</td>
+                                                    </tr>
+                                                }
+                                                @if (Model.MaLoaiSP == 13)
+                                                {
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Bảo hành</td>
+                                                        <td>@Model.BaoHanh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Kích thước</td>
+                                                        <td>@Model.KichThuoc</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Trọng lượng</td>
+                                                        <td>@Model.TrongLuong</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Chất liệu</td>
+                                                        <td>@Model.ChatLieu</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>Tốc độ quạt</td>
+                                                        <td>@Model.TocDo</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>Điện áp định mức</td>
+                                                        <td>@Model.DienAp</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <td>Áp suất tối đa</td>
+                                                        <td>@Model.ApSuat</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8</td>
+                                                        <td>Độ ồn</td>
+                                                        <td>@Model.DoOn</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>9</td>
+                                                        <td>Nguồn đầu vào</td>
+                                                        <td>@Model.DauVao</td>
+
+                                                    </tr>
+                                                }
+                                                @if (Model.MaLoaiSP == 14)
+                                                {
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Bảo hành</td>
+                                                        <td>@Model.BaoHanh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Kích thước</td>
+                                                        <td>@Model.KichThuoc</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Đồ họa</td>
+                                                        <td>@Model.DoHoa</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>CuDa Cores</td>
+                                                        <td>@Model.MauSac</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>Kết nối nguồn</td>
+                                                        <td>@Model.KetNoi</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>6</td>
+                                                        <td>Bộ nhớ</td>
+                                                        <td>@Model.DungLuong</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>7</td>
+                                                        <td>Công suất nguồn yêu cầu</td>
+                                                        <td>@Model.DauVao</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>8</td>
+                                                        <td>Đồng hồ ghi nhớ</td>
+                                                        <td>@Model.DongHo</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>9</td>
+                                                        <td>Độ phân giải</td>
+                                                        <td>@Model.PhanGiai</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>10</td>
+                                                        <td>DIRECTX hỗ trợ</td>
+                                                        <td>@Model.Directx</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>11</td>
+                                                        <td>OPENGL hỗ trợ</td>
+                                                        <td>@Model.Opengl</td>
+                                                    </tr>
+                                                }
+                                                @if (Model.MaLoaiSP == 17)
+                                                {
+                                                    <tr>
+                                                        <td>1</td>
+                                                        <td>Bảo hành</td>
+                                                        <td>@Model.BaoHanh</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2</td>
+                                                        <td>Trọng lượng</td>
+                                                        <td>@Model.TrongLuong</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3</td>
+                                                        <td>Pin</td>
+                                                        <td>@Model.Pin</td>
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4</td>
+                                                        <td>Màu sắc</td>
+                                                        <td>@Model.MauSac</td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td>5</td>
+                                                        <td>Kết nối nguồn</td>
+                                                        <td>@Model.KetNoi</td>
+
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /tab2  -->
+                            <!-- tab3  -->
+                            <div id="tab3" class="tab-pane fade in">
+                                @Html.Action("BinhLuan", "Website", new { id = Model.MaSP })
+                            </div>
+                            <!-- /tab3  -->
+                        </div>
+                        <!-- /product tab content  -->
+                    </div>
+                </div>
+                <!-- /product tab -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /container -->
+    </div>

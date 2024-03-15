@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "PhuKien";
+    Layout = null;
+}
+@model IEnumerable<Website.Models.LOAISANPHAM> 
+    <br />
+<h2 style="text-align:center">Phụ Kiện</h2>
+<br />
+    <div class="col-md-9" style="padding-left:90px;">
+        <div class="container">
+            @*
+        @using (Html.BeginForm("Search", "Search", FormMethod.Get, new { @class = "navbar-form", @role = "search" }))
+        {
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Tìm kiếm" value="@ViewBag.Search" name="strSearch"  style="width:250px;"/>
+            </div>
+            <button type="submit" class="btn btn-default">Tìm</button>
+        }*@
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div id="carousel1" class="carousel slide">
+
+                        <div class="carousel-inner">
+                            <div class="item active">
+                                <img class="img-responsive" src="~/Images/Slider/slider2.png" alt="thumb" style="width:100%;height:300px;">
+                                <!--<div class="carousel-caption"> Quảng cáo 1 </div>-->
+                            </div>
+                            <div class="item">
+                                <img class="img-responsive" src="~/Images/Slider/slider1.jpg" alt="thumb" style="width: 100%; height: 300px; ">
+
+                                <!--<div class="carousel-caption"> Quảng cáo 2 </div>-->
+                            </div>
+                            <div class="item">
+                                <img class="img-responsive" src="~/Images/Slider/slider3.jpg" alt="thumb" style="width: 100%; height: 300px; ">
+
+                                <!--<div class="carousel-caption"> Quảng cáo 2 </div>-->
+                            </div>
+
+                        </div>
+                        <a class="left carousel-control" href="#carousel1" data-slide="prev"><span class="icon-prev"></span></a>
+                        <a class="right carousel-control" href="#carousel1" data-slide="next"><span class="icon-next"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+    
+    <div class="col-md-12">
+        <br />
+        <div class="danhmuc">
+            <ul>
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a href="@Url.Action("HienThiPhuKien", "Website", new { id = item.MaLoaiSP })" class="list-group-item">
+                            @item.TenLoaiSP
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+<style>
+    .danhmuc ul li{
+        display:inline-block;
+        width:182px;
+        text-align:center;
+    }
+    .danhmuc{
+        padding-left:100px;
+    }
+</style>

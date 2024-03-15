@@ -1,0 +1,34 @@
+﻿@using Website.Models
+@{
+    ViewBag.Title = "YeuThich";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+<br />
+
+<div class="container">
+    <h3 style="text-align:left">Sản phẩm quan tâm</h3>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <td class="text-center" style="font-weight:bold">Ảnh </td>
+                <td style="font-weight:bold">Sản phẩm</td>
+                <td class="text-center" style="font-weight:bold">Giá</td>
+                <td class="text-center" style="font-weight:bold">Thao tác</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td><img src="~/Images/@i.Hinh" style="width:200px;" /></td>
+                    <td><a href="@Url.Action("ChiTietSanPham", "Website", new { id = i.MaSP })">@i.TenSP</a></td>
+                    <td><span style="color:blue;">@Html.FormatValue(@i.DonGia, "{0:#,##0}")</span></td>
+                    <td class="text-center">@Html.ActionLink("Xóa", "DeleteItem", new { id = i.MaSP })</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>

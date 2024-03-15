@@ -1,0 +1,329 @@
+﻿@model Website.Models.SANPHAM
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+@using Website.Models
+<h2>CHI TIẾT</h2>
+
+<div>
+    <h4>Sản phẩm</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tên sản phẩm
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenSP)
+        </dd>
+
+        <dt>
+            Mô tả
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MoTa)
+        </dd>
+
+        <dt>
+            Hình ảnh
+        </dt>
+
+        <dd>
+            <img src="~/Images/@Model.Hinh" width="150px;" />
+        </dd>
+
+        <dt>
+            Ngày cập nhật
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayCapNhat)
+        </dd>
+
+        <dt>
+            Số lượng bán
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SoLuongBan)
+        </dd>
+
+        <dt>
+            Giá bán
+        </dt>
+
+        <dd>
+            @Html.FormatValue(Model.GiaBan, "{0:#,##0}")
+        </dd>
+
+        <dt>
+            Mã loại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MaLoaiSP)
+        </dd>
+        <dt>
+            Thuộc loại
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LOAISANPHAM.TenLoaiSP)
+        </dd>
+        <dt>
+          Màn hình
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ManHinh)
+        </dd>
+
+        <dt>
+            Xuất xứ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.XuatXu)
+        </dd>
+
+        <dt>
+            Bảo hành
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BaoHanh)
+        </dd>
+
+        <dt>
+           Kích thước
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KichThuoc)
+        </dd>
+
+        <dt>
+            Trọng lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TrongLuong)
+        </dd>
+
+        <dt>
+            Chất liệu
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChatLieu)
+        </dd>
+
+        <dt>
+            Bộ xử lý
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BoXuLy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAM)
+        </dd>
+
+        <dt>
+           Hệ điều hành
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HeDieuHanh)
+        </dd>
+
+        <dt>
+            Đồ họa
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoHoa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pin)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pin)
+        </dd>
+
+        <dt>
+            Năm ra mắt
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NamRaMat)
+        </dd>
+
+        <dt>
+            Ảnh con
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HinhCon)
+        </dd>
+
+        <dt>
+            Màu sắc
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MauSac)
+        </dd>
+
+        <dt>
+            Cổng kết nối
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KetNoi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Socket)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Socket)
+        </dd>
+
+        <dt>
+           Tốc độ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TocDo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cache)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cache)
+        </dd>
+
+        <dt>
+            Nhân CPU
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NhanCPU)
+        </dd>
+
+        <dt>
+            Luồng CPU
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LuongCPU)
+        </dd>
+
+        <dt>
+            Dây chuyền
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DayChuyen)
+        </dd>
+
+        <dt>
+            Điện áp
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DienAp)
+        </dd>
+
+        <dt>
+            Dung lượng
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DungLuong)
+        </dd>
+
+        <dt>
+            Loại Ổ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiO)
+        </dd>
+
+        <dt>
+           Áp suất
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApSuat)
+        </dd>
+
+        <dt>
+            Độ ồn
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DoOn)
+        </dd>
+
+        <dt>
+            Đầu vào
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DauVao)
+        </dd>
+
+        <dt>
+            Đồng hồ
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DongHo)
+        </dd>
+
+        <dt>
+            Phân giải
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhanGiai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Directx)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Directx)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opengl)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opengl)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaSP }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

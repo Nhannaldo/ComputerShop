@@ -1,0 +1,174 @@
+﻿@using Website.Models
+
+@model IEnumerable<Website.Models.BINHLUAN>
+@{
+    Layout = null;
+}
+<div class="row">
+    <!-- Rating -->
+
+    <div class="col-md-3">
+        <div id="rating">
+            <div class="rating-avg">
+                <span>5,0</span>
+                <div class="rating-stars">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+            </div>
+            <ul class="rating">
+                <li>
+                    <div class="rating-stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="rating-progress">
+                        <div style="width: 80%;"></div>
+                    </div>
+                    <span class="sum">3</span>
+                </li>
+                <li>
+                    <div class="rating-stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="rating-progress">
+                        <div style="width: 60%;"></div>
+                    </div>
+                    <span class="sum">2</span>
+                </li>
+                <li>
+                    <div class="rating-stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="rating-progress">
+                        <div></div>
+                    </div>
+                    <span class="sum">0</span>
+                </li>
+                <li>
+                    <div class="rating-stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="rating-progress">
+                        <div></div>
+                    </div>
+                    <span class="sum">0</span>
+                </li>
+                <li>
+                    <div class="rating-stars">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                    </div>
+                    <div class="rating-progress">
+                        <div></div>
+                    </div>
+                    <span class="sum">0</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- /Rating -->
+    <!-- Reviews -->
+    <div class="col-md-6">
+        <div id="reviews">
+            <ul class="reviews">
+                @foreach (var bl in Model)
+                {
+                    <li>
+                        <div class="review-heading">
+                            <h5 class="name">@bl.HoTen</h5>
+                            <p class="date">@bl.NgayBinhLuan</p>
+                            <div class="review-rating">
+                                @if (bl.DanhGia == 5)
+                                {
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                }
+                                else if (bl.DanhGia == 4)
+                                {
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                }
+                                else if (bl.DanhGia == 3)
+                                {
+
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                }
+                                else if (bl.DanhGia == 2)
+                                {
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                }
+                                else
+                                {
+                                    <i class="fa fa-star"></i>
+                                }
+                            </div>
+                        </div>
+                        <div class="review-body">
+                            <p>@bl.NoiDung</p>
+                        </div>
+                    </li>
+                }
+
+
+            </ul>
+            
+        </div>
+    </div>
+
+    <!-- /Reviews -->
+    <!-- Review Form -->
+    <div class="col-md-3">
+        <div id="review-form">
+            @using (Html.BeginForm("BinhLuan", "Website", FormMethod.Post, new { @class = "review-form" }))
+            {
+
+                <input class="input" type="text" placeholder="Nhập tên" name="HoTen">
+                <input class="input" type="email" placeholder="Nhập Email" name="Email" required>
+                <textarea class="input" placeholder="Nhập bình luận" name="NoiDung"></textarea>
+                <div class="input-rating">
+                    <span>Đánh giá: </span>
+                    <div class="stars">
+                        <input id="star5" name="DanhGia" value="5" type="radio"><label for="star5"></label>
+                        <input id="star4" name="DanhGia" value="4" type="radio"><label for="star4"></label>
+                        <input id="star3" name="DanhGia" value="3" type="radio"><label for="star3"></label>
+                        <input id="star2" name="DanhGia" value="2" type="radio"><label for="star2"></label>
+                        <input id="star1" name="DanhGia" value="1" type="radio"><label for="star1"></label>
+                    </div>
+                </div>
+                <button class="primary-btn" type="submit">Gửi</button>
+                <div style="color:red";>@ViewBag.ThongBao</div>
+            }
+        </div>
+    </div>
+    <!-- /Review Form -->
+</div>

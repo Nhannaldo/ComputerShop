@@ -1,0 +1,157 @@
+﻿@using Website.Models
+@model IEnumerable<Website.Models.SANPHAM>
+@helper Truncate(string s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length)<text>...</text>
+    }
+}
+@section Slider{
+    @Html.Action("SliderPartial", "Website")
+}
+@section BanNhieu{
+    @Html.Action("BanNhieuPartial", "Website")
+}
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<!-- SECTION -->
+<!-- /SECTION -->
+<!-- SECTION -->
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+
+            <!-- section title -->
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h3 class="title">Sản phẩm mới nhất</h3>
+                    @*
+        <div class="section-nav">
+            <ul class="section-tab-nav tab-nav">
+                <li class="active"><a data-toggle="tab" href="#tab1">Laptop</a></li>
+                <li><a data-toggle="tab" href="#tab1">Linh kiện PC</a></li>
+                <li><a data-toggle="tab" href="#tab1">Phụ kiện</a></li>
+
+            </ul>
+        </div>*@
+                </div>
+            </div>
+            <!-- /section title -->
+            <!-- Products tab & slick -->
+
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="products-tabs">
+                        <!-- tab -->
+                        <div id="tab1" class="tab-pane active">
+                            <div class="products-slick" data-nav="#slick-nav-1">
+                                <!-- product -->
+                                @{
+                                    foreach (var sp in Model)
+                                    {
+                                        <div class="product">
+                                            <div class="product-img">
+                                                <img src="~/Images/@sp.Hinh" alt="" style="height:141.66px;">
+                                                @*
+                                                    <div class="product-label">
+                                                        <span class="sale">-30%</span>
+                                                        <span class="new">NEW</span>
+                                                    </div>*@
+                                            </div>
+                                            <div class="product-body" style="height:190.97px;">
+
+                                                <h3 class="product-name"><a href="@Url.Action("ChiTietSanPham", "Website", new { id = sp.MaSP })">@Truncate(sp.TenSP,50)</a></h3>
+                                                <h4 class="product-price"><span>@Html.FormatValue(@sp.GiaBan, "{0:#,##0}") VNĐ</span> @*<del class="product-old-price">13.000.000 VNĐ</del>*@</h4>
+                                                <div class="product-rating">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                </div>
+                                                <div class="product-btns">
+                                                    <button class="add-to-wishlist"><a href="@Url.Action("AddYeuThich","YeuThich", new { id = sp.MaSP, url = Request.Url.ToString() })"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+
+                                                    <button class="quick-view"><a href="@Url.Action("ChiTietSanPham", "Website", new { id = sp.MaSP })"><i class="fa fa-eye"></i></a><span class="tooltipp">quick view</span></button>
+                                                </div>
+                                            </div>
+                                            <div class="add-to-cart">
+                                                <button class="add-to-cart-btn"><a href="@Url.Action("AddGioHang","GioHang", new { id=sp.MaSP, url = Request.Url.ToString() })"><i class=" glyphicon glyphicon-shopping-cart"></i> Add to cart</a></button>
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+                            </div>
+
+
+
+                        </div>
+                        <!-- /tab -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products tab & slick -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /SECTION -->
+<!-- HOT DEAL SECTION -->
+<div id="hot-deal" class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="hot-deal">
+                    <ul class="hot-deal-countdown">
+                        <li>
+                            <div>
+                                <h3>02</h3>
+                                <span>Ngày</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>10</h3>
+                                <span>Giờ</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>34</h3>
+                                <span>Phút</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div>
+                                <h3>60</h3>
+                                <span>Giây</span>
+                            </div>
+                        </li>
+                    </ul>
+                    <h2 class="text-uppercase">Khuyến mãi nóng trong tuần này</h2>
+                    <p>Bộ sưu tập mới GIẢM GIÁ tới 50%</p>
+                    <a class="primary-btn cta-btn" href="#">Mua sắm ngay</a>
+                </div>
+            </div>
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+<!-- /HOT DEAL SECTION -->
+<!-- SECTION -->

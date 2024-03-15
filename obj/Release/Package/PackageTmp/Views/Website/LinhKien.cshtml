@@ -1,0 +1,154 @@
+﻿@using Website.Models
+@using PagedList.Mvc;
+@model PagedList.PagedList<SANPHAM>
+@helper Truncate(string s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length)<text>...</text>
+    }
+}
+@{
+    ViewBag.Title = "LinhKien";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+
+<br />
+@section Phukien{
+    @Html.Action("DanhMucLinhKienPartial", "Website")
+}
+<div class="section">
+    <!-- container -->
+    <div class="container">
+        <!-- row -->
+        <div class="row">
+            <!-- ASIDE -->
+            <!-- /ASIDE -->
+            <!-- STORE -->
+            <div id="store" class="col-md-12">
+                <!-- store top filter -->
+                <div class="store-filter clearfix">
+                    <div class="store-sort">
+                        <label>
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background:none;color:black">
+                                    Sắp xếp theo
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Sản phẩm nổi bật", "LinhKien", new { sort = "spnoibat" })</li>
+                                    <li>@Html.ActionLink("Giá giảm dần", "LinhKien", new { sort = "giam" })</li>
+                                    <li>@Html.ActionLink("Giá tăng dần", "LinhKien", new { sort = "tang" })</li>
+                                </ul>
+                            </div>
+                        </label>
+                    </div>
+                    
+                </div>
+                <!-- /store top filter -->
+                <!-- store products -->
+                <div class="row">
+                    <!-- product -->
+                    @{
+                        foreach (var sp in Model)
+                        {
+                            <div class="col-md-3 col-xs-6">
+                                <div class="product">
+                                    <div class="product-img">
+                                        <img src="~/Images/@sp.Hinh" alt="" style="height:170px;">
+                                        @*
+                                <div class="product-label">
+                                    <span class="sale">-30%</span>
+                                    <span class="new">NEW</span>
+                                </div>*@
+                                    </div>
+                                    <div class="product-body" style="height:190px;">
+
+                                        <h3 class="product-name"><a href="@Url.Action("ChiTietSanPham", "Website", new { id = sp.MaSP })">@Truncate(sp.TenSP, 50)</a></h3>
+                                        <h4 class="product-price"><span>@Html.FormatValue(@sp.GiaBan, "{0:#,##0}") VNĐ</span> @*<del class="product-old-price">13.000.000 VNĐ</del>*@</h4>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product-btns">
+                                            <button class="add-to-wishlist"><a href="@Url.Action("AddYeuThich","YeuThich", new { id = sp.MaSP, url = Request.Url.ToString() })"><i class="fa fa-heart-o"></i></a><span class="tooltipp">add to wishlist</span></button>
+                                            
+                                            <button class="quick-view"><a href="@Url.Action("ChiTietSanPham", "Website", new { id = sp.MaSP })"><i class="fa fa-eye"></i></a><span class="tooltipp">quick view</span></button>
+                                        </div>
+                                    </div>
+                                    <div class="add-to-cart">
+                                        <button class="add-to-cart-btn"><a href="@Url.Action("AddGioHang","GioHang", new { id=sp.MaSP, url = Request.Url.ToString() })"><i class=" glyphicon glyphicon-shopping-cart"></i> Add to cart</a></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix visible-sm visible-xs"></div>
+                        }
+
+                    }
+
+
+
+
+
+
+
+
+                    @*
+            <div class="clearfix visible-lg visible-md"></div>
+
+
+
+            <div class="clearfix visible-sm visible-xs"></div>
+
+
+
+
+
+            <div class="clearfix visible-lg visible-md visible-sm visible-xs"></div>
+
+
+
+
+            <div class="clearfix visible-sm visible-xs"></div>
+
+                    *@
+                </div>
+                <!-- /store products -->
+                <!-- store bottom filter -->
+                @*
+        <div class="store-filter clearfix">
+            <ul class="store-pagination">
+                <li class="active">1</li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#"><i class="fa fa-angle-right"></i></a></li>
+            </ul>
+        </div>*@
+                @*Tạo liên kết các trang*@
+                Trang @(Model.PageCount<Model.PageNumber?0:Model.PageNumber)/@Model.PageCount
+                <div class="MenuTrang">
+                    @Html.PagedListPager(Model, page => Url.Action("LinhKien", new { page = page,sort=ViewBag.NameSort }))
+                </div>
+                <style>
+                    .MenuTrang {
+                        display: inline;
+                        text-align: center;
+                    }
+                </style>
+                <!-- /store bottom filter -->
+            </div>
+            <!-- /STORE -->
+        </div>
+        <!-- /row -->
+    </div>
+    <!-- /container -->
+</div>
+

@@ -1,0 +1,63 @@
+﻿@using Website.Models
+@{
+    ViewBag.Title = "GioHang";
+    Layout = "~/Views/Shared/_LayoutWebsite.cshtml";
+}
+<br />
+<div class="container">
+    <h3 style="text-align:left">Thông tin giỏ hàng</h3>
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <td class="text-center" style="font-weight:bold">Ảnh </td>
+                <td width="40%" style="font-weight:bold">Sản phẩm</td>
+                <td class="text-center" style="font-weight:bold">Số lượng</td>
+                <td class="text-center" style="font-weight:bold">Giá</td>
+                <td style="font-weight:bold">Thành tiền</td>
+                <td class="text-center" style="font-weight:bold">Thao tác</td>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var i in Model)
+            {
+                <tr>
+                    <td><img src="~/Images/@i.Hinh" style="width:200px;" /></td>
+                    <td><a href="@Url.Action("ChiTietSanPham", "Website", new { id = i.MaSP })">@i.TenSP</a></td>
+                    @using (Html.BeginForm("Update", "GioHang", new { id = i.MaSP }))
+                    {
+                        <td class="text-center">
+                            <input type="number" min="1" value="@i.SoLuong" name="soluong" class="form-control" />
+                        </td>
+                        <td><span style="color:blue;font-weight:bold">@Html.FormatValue(@i.DonGia, "{0:#,##0}")</span></td>
+                        <td><span style="color:blue;font-weight:bold">@Html.FormatValue(@i.TongTien, "{0:#,##0}")</span></td>
+                        <td class="text-center">
+                            @Html.ActionLink("Xóa", "DeleteItem", new { id = i.MaSP })
+
+                        </td>
+                        <td>
+                            <input type="submit" value="Cập nhật" />
+                        </td>
+                    }
+                </tr>
+                
+            }<tr>
+                    <td colspan="4" class="text-right" style="font-weight:bold">Tổng tiền</td>
+                    
+                    <td colspan="3" style="font-weight:bold;color:red">@Html.FormatValue(@ViewBag.Tong, "{0:#,##0}")</td>
+                </tr>
+        </tbody>
+    </table>
+    <div class="col-sm-12">
+        
+        <div class="pull-left">
+            <a href="@Url.Action("Index","Website")" class="btn btn-primary">Tiếp tục mua hàng</a>
+        </div>
+        <div class="pull-right">
+            <a href="@Url.Action("ThanhToan","GioHang")" class="btn btn-danger">Thanh Toán</a>
+        </div>
+    </div>
+    <br />
+</div>
+<br />
+
